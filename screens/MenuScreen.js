@@ -4,10 +4,10 @@ import { Text, StyleSheet, View, TouchableHighlight } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage';
 
 import axios from 'axios'
-
 import {connect} from 'react-redux'
-
 import { getProfile } from '../redux/actions/actions'
+import {EditProfileScreen} from 'EditProfileScreen'
+
 
 class MenuScreen extends Component {
 
@@ -35,12 +35,25 @@ class MenuScreen extends Component {
           เมนูหลัก
         </Text>
         {
-          this.props.profile    &&
+          this.props.profile  &&
             <View>
               <Text>ID : {this.props.profile.id}</Text>
               <Text>Name : {this.props.profile.name}</Text>
               <Text>Email : {this.props.profile.email}</Text>
               <Text>Role : {this.props.profile.role}</Text>
+              <TouchableHighlight
+              onPress={
+                 () => {
+                  this.props.navigation.navigate('EditProfile');
+                }
+              }
+            >
+              <View
+                style={{ width: 250, backgroundColor: 'blue', alignItems: 'center', marginTop: 30 }}>
+                <Text style={{ color: 'white', padding: 20, fontSize: 20 }}>แก้ไขข้อมูลส่วนตัว</Text>
+              </View>
+            </TouchableHighlight>
+
             </View>
         }
         <TouchableHighlight

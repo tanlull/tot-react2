@@ -14,13 +14,15 @@ import MenuScreen from './screens/MenuScreen';
 import NewsScreen from './screens/NewsScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import LoginScreen from './screens/LoginScreen';
+import EditProfileScreen from './screens/EditProfileScreen'
 
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
   About: AboutScreen,
   Register: RegisterScreen,
-  Login: LoginScreen
+  Login: LoginScreen,
+  EditProfile : EditProfileScreen,
 }, 
 {
     defaultNavigationOptions: {
