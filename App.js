@@ -3,6 +3,10 @@ import { Platform, StyleSheet, Text, View } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import rootReducer from './redux/reducers/index'
+
 import { createStackNavigator, createAppContainer, createDrawerNavigator, createBottomTabNavigator } from "react-navigation";
 import HomeScreen from './screens/HomeScreen';
 import AboutScreen from './screens/AboutScreen';
@@ -81,11 +85,15 @@ const drawerNavigator = createDrawerNavigator({
 
 const AppContainer = createAppContainer(drawerNavigator);
 
+const store = createStore(rootReducer);
+
 
 export default class App extends React.Component {
   render() {
     return ( 
+      <Provider store={store}>
         <AppContainer />
+      </Provider>
     )
   }
 }

@@ -1,28 +1,23 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet, View, TouchableHighlight } from 'react-native'
 
-
 import AsyncStorage from '@react-native-community/async-storage';
 
+import {connect} from 'react-redux'
 
-export default class MenuScreen extends Component {
-
-
-
+class MenuScreen extends Component {
 
   render() {
-
    
-
     return (
       <View style={styles.container}>
         <Text style={{ fontSize: 35, marginTop: 10 }}>
           เมนูหลัก
         </Text>
-
-       
-       
-
+        <Text>ID : {this.props.profile.id}</Text>
+        <Text>Name : {this.props.profile.name}</Text>
+        <Text>Email : {this.props.profile.email}</Text>
+        <Text>Role : {this.props.profile.role}</Text>
         <TouchableHighlight
           onPress={
             () => {
@@ -35,12 +30,6 @@ export default class MenuScreen extends Component {
             <Text style={{ color: 'white', padding: 20, fontSize: 20 }}>ข่าว</Text>
           </View>
         </TouchableHighlight>
-
-
-
-
-
-
 
       </View>
     )
@@ -55,3 +44,10 @@ const styles = StyleSheet.create({
   }
 })
 
+const mapStatetoProps = (state) => {
+  return {
+    profile : state.authReducer.profile
+  }
+}
+
+export default connect(mapStatetoProps)(MenuScreen)
