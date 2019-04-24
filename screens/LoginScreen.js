@@ -18,9 +18,16 @@ class LoginScreen extends Component {
     };
 
     state = {
-        email: 't@t.t',
-        password: '123'
+        email: '',
+        password: ''
     }
+
+    componentDidMount(){
+        this.setState({
+            email: 't@t.t',
+            password: '123',
+        })
+      }
 
     _Login = async () => {
 
@@ -72,6 +79,8 @@ class LoginScreen extends Component {
                         <Item fixedLabel>
                             <Label>อีเมล์</Label>
                             <Input
+                                value={this.state.email}
+                                editable={true}
                                 keyboardType='email-address'
                                 onChangeText={(email) => this.setState({ email: email })}
                             />
@@ -79,6 +88,8 @@ class LoginScreen extends Component {
                         <Item fixedLabel>
                             <Label>รหัสผ่าน</Label>
                             <Input
+                                value={this.state.password}
+                                editable={true}
                                 keyboardType='number-pad'
                                 secureTextEntry={true}
                                 onChangeText={(password) => this.setState({ password: password })}

@@ -15,6 +15,7 @@ import NewsScreen from './screens/NewsScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import LoginScreen from './screens/LoginScreen';
 import EditProfileScreen from './screens/EditProfileScreen'
+import CategoryScreen  from './screens/CategoryScreen'
 
 
 const HomeStack = createStackNavigator({
@@ -23,6 +24,7 @@ const HomeStack = createStackNavigator({
   Register: RegisterScreen,
   Login: LoginScreen,
   EditProfile : EditProfileScreen,
+  Category : CategoryScreen,
 }, 
 {
     defaultNavigationOptions: {

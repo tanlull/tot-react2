@@ -56,6 +56,25 @@ class MenuScreen extends Component {
 
             </View>
         }
+
+        {
+          this.props.profile  && this.props.profile.role == 'admin' &&
+            <View>
+              <TouchableHighlight
+              onPress={
+                 () => {
+                  this.props.navigation.navigate('Category');
+                }
+              }
+            >
+              <View
+                style={{ width: 250, backgroundColor: '#555500', alignItems: 'center', marginTop: 30 }}>
+                <Text style={{ color: 'white', padding: 20, fontSize: 20 }}>หมวดหมู่ข่าว</Text>
+              </View>
+            </TouchableHighlight>
+
+            </View>
+        }
         <TouchableHighlight
           onPress={
             () => {
