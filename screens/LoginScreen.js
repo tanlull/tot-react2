@@ -18,8 +18,8 @@ class LoginScreen extends Component {
     };
 
     state = {
-        email: '',
-        password: ''
+        email: 't@t.t',
+        password: '123'
     }
 
     _Login = async () => {
@@ -49,9 +49,9 @@ class LoginScreen extends Component {
 
             //get profile
             const profile = await AsyncStorage.getItem('@profile');
-            alert(profile)
-            //call action
-           // this.props.dispatch(getProfile(JSON.parse(profile)))
+            //alert(profile)
+            //call action (action creator)
+            this.props.dispatch(getProfile(JSON.parse(profile)))
 
            
             
