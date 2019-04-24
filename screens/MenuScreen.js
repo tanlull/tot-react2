@@ -14,10 +14,15 @@ class MenuScreen extends Component {
         <Text style={{ fontSize: 35, marginTop: 10 }}>
           เมนูหลัก
         </Text>
-        <Text>ID : {this.props.profile.id}</Text>
-        <Text>Name : {this.props.profile.name}</Text>
-        <Text>Email : {this.props.profile.email}</Text>
-        <Text>Role : {this.props.profile.role}</Text>
+        {
+          this.props.profile    &&
+            <View>
+              <Text>ID : {this.props.profile.id}</Text>
+              <Text>Name : {this.props.profile.name}</Text>
+              <Text>Email : {this.props.profile.email}</Text>
+              <Text>Role : {this.props.profile.role}</Text>
+            </View>
+        }
         <TouchableHighlight
           onPress={
             () => {

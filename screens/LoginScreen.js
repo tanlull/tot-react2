@@ -5,10 +5,13 @@ import { DatePicker, Container, Header, Content, Form, Item, Input, Label, Butto
 
 import axios from 'axios';
 
+import {connect} from  'react-redux';
+import  {getProfile} from '../redux/actions/actions'
 
 import AsyncStorage from '@react-native-community/async-storage';
 
-export default class LoginScreen extends Component {
+
+class LoginScreen extends Component {
 
     static navigationOptions = {
         title: 'เข้าระบบ',
@@ -45,8 +48,11 @@ export default class LoginScreen extends Component {
             await AsyncStorage.setItem('@profile',JSON.stringify(responseProfile.data.data.user));
 
             //get profile
-
+            const profile = await AsyncStorage.getItem('@profile');
+            alert(profile)
             //call action
+           // this.props.dispatch(getProfile(JSON.parse(profile)))
+
            
             
             this.props.navigation.navigate('Home');
@@ -94,3 +100,5 @@ export default class LoginScreen extends Component {
 }
 
 const styles = StyleSheet.create({})
+
+export default connect()(LoginScreen)

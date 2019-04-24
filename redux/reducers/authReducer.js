@@ -1,17 +1,19 @@
 // Reducer
+import {GET_PROFILE} from "../actions/actions"
 
 const initState = {
-   // profile : null
-   profile:{
-       id:1,
-        name : 'Tanya',
-        email: 'tan@tot.co.th',
-        role:'member',
-   }
+   profile : null
 }
 
 const authReducer  = (state = initState,action ) => {
-    return state;
+    switch(action.type){
+        case GET_PROFILE:
+            return {
+                profile: action.payload.profile
+            }
+        default:
+            return state;
+    }    
 }
 
 export default authReducer;
