@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "413203611089",
+    "firebase_url": "https://akenarin-680c4.firebaseio.com",
+    "project_id": "akenarin-680c4",
+    "storage_bucket": "akenarin-680c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:413203611089:android:deca88f796a9cd19",
+        "android_client_info": {
+          "package_name": "com.rnworkshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "413203611089-resgqr53l067c8v72r2d624h9q18b5tt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSDMauVK7sCVrTyT5JlPDu635axhfVJDE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "413203611089-resgqr53l067c8v72r2d624h9q18b5tt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
