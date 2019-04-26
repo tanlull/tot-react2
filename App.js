@@ -3,9 +3,10 @@ import { Platform, StyleSheet, Text, View } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import {Provider} from 'react-redux';
-import {createStore} from 'redux';
-import rootReducer from './redux/reducers/index'
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from './redux/reducers/index';
 
 import { createStackNavigator, createAppContainer, createDrawerNavigator, createBottomTabNavigator } from "react-navigation";
 import HomeScreen from './screens/HomeScreen';
@@ -14,17 +15,20 @@ import MenuScreen from './screens/MenuScreen';
 import NewsScreen from './screens/NewsScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import LoginScreen from './screens/LoginScreen';
-import EditProfileScreen from './screens/EditProfileScreen'
-import CategoryScreen  from './screens/CategoryScreen'
-
+import EditProfileScreen from './screens/EditProfileScreen';
+import CategoryScreen from './screens/CategoryScreen';
+import AddCategoryScreen from './screens/AddCategoryScreen'
+import EditCategoryScreen from './screens/EditCategoryScreen'
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
   About: AboutScreen,
   Register: RegisterScreen,
   Login: LoginScreen,
-  EditProfile : EditProfileScreen,
-  Category : CategoryScreen,
+  EditProfile: EditProfileScreen,
+  Category: CategoryScreen,
+  AddCategory: AddCategoryScreen,
+  EditCategory: EditCategoryScreen
 }, 
 {
     defaultNavigationOptions: {
@@ -89,15 +93,15 @@ const drawerNavigator = createDrawerNavigator({
 
 const AppContainer = createAppContainer(drawerNavigator);
 
-const store = createStore(rootReducer);
-
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export default class App extends React.Component {
   render() {
-    return ( 
+    return (
       <Provider store={store}>
-        <AppContainer />
-      </Provider>
+         <AppContainer />
+      </Provider> 
+       
     )
   }
 }

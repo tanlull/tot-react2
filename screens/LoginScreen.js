@@ -5,11 +5,11 @@ import { DatePicker, Container, Header, Content, Form, Item, Input, Label, Butto
 
 import axios from 'axios';
 
-import {connect} from  'react-redux';
-import  {getProfile} from '../redux/actions/actions'
+import { connect } from 'react-redux';
+import { getProfile } from '../redux/actions/actions';
+
 
 import AsyncStorage from '@react-native-community/async-storage';
-
 
 class LoginScreen extends Component {
 
@@ -21,13 +21,6 @@ class LoginScreen extends Component {
         email: '',
         password: ''
     }
-
-    componentDidMount(){
-        this.setState({
-            email: 't@t.t',
-            password: '123',
-        })
-      }
 
     _Login = async () => {
 
@@ -56,10 +49,9 @@ class LoginScreen extends Component {
 
             //get profile
             const profile = await AsyncStorage.getItem('@profile');
-            //alert(profile)
-            //call action (action creator)
-            this.props.dispatch(getProfile(JSON.parse(profile)))
-
+            //alert(profile);
+            //call action  (action creator)
+            this.props.dispatch(getProfile(JSON.parse(profile)));
            
             
             this.props.navigation.navigate('Home');
@@ -79,8 +71,6 @@ class LoginScreen extends Component {
                         <Item fixedLabel>
                             <Label>อีเมล์</Label>
                             <Input
-                                value={this.state.email}
-                                editable={true}
                                 keyboardType='email-address'
                                 onChangeText={(email) => this.setState({ email: email })}
                             />
@@ -88,8 +78,6 @@ class LoginScreen extends Component {
                         <Item fixedLabel>
                             <Label>รหัสผ่าน</Label>
                             <Input
-                                value={this.state.password}
-                                editable={true}
                                 keyboardType='number-pad'
                                 secureTextEntry={true}
                                 onChangeText={(password) => this.setState({ password: password })}
