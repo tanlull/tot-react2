@@ -79,6 +79,24 @@ class MenuScreen extends Component {
         }
 
 
+        {
+          this.props.profile &&
+          (
+            <TouchableHighlight
+              onPress={
+                () => {
+                  this.props.navigation.navigate('AddNews');
+                }
+              }
+            >
+              <View
+                style={{ width: 250, backgroundColor: '#233454', alignItems: 'center', marginTop: 30 }}>
+                <Text style={{ color: 'white', padding: 20, fontSize: 20 }}>เพิ่มข่าว</Text>
+              </View>
+            </TouchableHighlight>
+          )
+        }
+
 
         <TouchableHighlight
           onPress={

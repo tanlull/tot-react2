@@ -19,6 +19,7 @@ import EditProfileScreen from './screens/EditProfileScreen';
 import CategoryScreen from './screens/CategoryScreen';
 import AddCategoryScreen from './screens/AddCategoryScreen'
 import EditCategoryScreen from './screens/EditCategoryScreen'
+import AddNewsScreen from './screens/AddNewsScreen'
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -28,7 +29,8 @@ const HomeStack = createStackNavigator({
   EditProfile: EditProfileScreen,
   Category: CategoryScreen,
   AddCategory: AddCategoryScreen,
-  EditCategory: EditCategoryScreen
+  EditCategory: EditCategoryScreen,
+  AddNews : AddNewsScreen,
 }, 
 {
     defaultNavigationOptions: {

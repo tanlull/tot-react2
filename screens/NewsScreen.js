@@ -23,14 +23,16 @@ export default class NewsScreen extends Component {
 
   state = {
     articles: [],
-    loading: true
+    loading: true,
+    page: 1,
+    footerLoading: true
   }
 
   async getData() {
-    const response = await axios.get('https://newsapi.org/v2/top-headlines?country=th&apiKey=ab0d4aca4cea481e8157d31c68eb2b23');
-    //alert(JSON.stringify(response.data.articles));
+    const response = await axios.get('https://api.codingthailand.com/api/news');
+    //alert(JSON.stringify(response.data.data));
     this.setState({
-      articles: response.data.articles,
+      articles: response.data.data,
       loading: false
     });
   }
@@ -51,23 +53,25 @@ export default class NewsScreen extends Component {
         <CardItem>
           <Left>
             <Body>
-              <Text>{item.title}</Text>
-              <Text note>{item.source.name}</Text>
+              <Text>{item.topic}</Text>
+              <Text note>{item.id}</Text>
             </Body>
           </Left>
         </CardItem>
-        <CardItem cardBody>
-          <Image source={{ uri: item.urlToImage }} style={{ height: 200, width: null, flex: 1 }} />
+        <CardItem>
+              <Body>
+                   <Text>{item.detail}</Text>
+              </Body>
         </CardItem>
         <CardItem>
           <Left>
             <Button transparent>
               <Icon active name="person" />
-              <Text>{item.author ? item.author : '-'}</Text>
+              <Text>{item.name}</Text>
             </Button>
           </Left>
           <Right>
-            <Text>{format(item.publishedAt, 'DD MMMM YYYY hh:mm:ss')}</Text>
+            <Text>{format(item.dateadd, 'DD MMMM YYYY hh:mm:ss')}</Text>
           </Right>
         </CardItem>
       </Card>
@@ -76,8 +80,41 @@ export default class NewsScreen extends Component {
   };
 
   _onRefresh = () => {
-    this.setState({loading: true});
+    this.setState(
+      { 
+        articles: [],
+        loading: true,
+        page: 1
+      }
+    );
     this.getData();
+  }
+
+   async getLoadMore()  {
+    const response = 
+    await axios.get('https://api.codingthailand.com/api/news?page='+this.state.page);
+  
+    this.setState( (prevState) => ({
+        articles: prevState.articles.concat(response.data.data),
+        //loading: false
+        footerLoading: false
+    }));
+
+  }
+
+  _onEndReached = () => {
+     //console.warn('ok');
+     this.setState({
+        page: ++this.state.page,
+        footerLoading: true
+     })
+     this.getLoadMore();
+  }
+
+  _renderFooter = () => {
+      return (
+         this.state.footerLoading === true ? <ActivityIndicator size="large" color="green" /> : null
+      )
   }
 
   render() {
@@ -90,10 +127,13 @@ export default class NewsScreen extends Component {
           ) : (
               <FlatList
                 data={this.state.articles}
-                keyExtractor={item => item.title}
+                keyExtractor={item => item.id.toString()}
                 renderItem={this._renderItem}
                 refreshing={this.state.loading}
                 onRefresh={this._onRefresh}
+                onEndReached={this._onEndReached}
+                onEndReachedThreshold={0.5}
+                ListFooterComponent={this._renderFooter}
               />
             )
         }
